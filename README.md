@@ -6,6 +6,7 @@ This was inspired by PS360 Midi Drummer (link unavailable), but it didn't work f
 It should work with Rock Band drumkits, but for those, one should use [rb2midi](http://www.mattgrounds.com/rb2midi/), which is tailored for those (including cymbal and accurate sensitivity support).
 
 It is **NOT** compatible with PS3 or Wii kits, since this program uses XInput - however, one can try using [x360ce](http://www.x360ce.com/) to emulate a Xbox controller. If the buttons and axis are configured correctly on it, it should work flawlessy (including sensitivity), but it is untested, so I cannot assure it'll actually work.
+
 ## Requirements
 This program needs a few things to work correctly. Those are:
   * .NET Framework
@@ -15,6 +16,7 @@ This program needs a few things to work correctly. Those are:
   * ASIO4ALL
 
 The last one isn't obligatory, but it is strongly recommended if you want to use your drumkit without audio lag.
+
 ## Usage
 This assumes you already have the requirements installed.
   * Open up 360GHDrums2Midi.exe;
@@ -34,6 +36,7 @@ This assumes you already have the requirements installed.
   * To fix that, find the "audio output" setting on your DAW, and set it to ASIO4ALL;
     * Note that, while ASIO4ALL fixs the audio latency, it also makes the audio output exclusive to the software that uses it - so the DAW will be the only program on your computer that will actually output any audio. If you want to hear audio from other programs while having the DAW open, do **not** use ASIO4ALL (however, you'll still have audio latency).
   * Hit the pads again! It should still be working, but this time without the audio lag!
+
 ## Settings
 The program also offers some custom settings, which can be altered on the settings.ini file. Those are:
 * boostRed
@@ -82,6 +85,7 @@ The program also offers some custom settings, which can be altered on the settin
   * Refers to the player index of the Xbox controller. Since XInput supports up to 4 controllers, the valid values are 1, 2, 3 and 4.
   * Default value is 1
   * If the specified number is invalid (smaller than 1 or bigger than 4), the default value will be used.
+
 ## License
 This software is released under the MIT license. You're free to use it and modify it as you will, as long as you read and agree with its license.
 
