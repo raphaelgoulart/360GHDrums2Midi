@@ -1,5 +1,5 @@
 # 360GHDrums2Midi
-This program reads input from Guitar Hero drumkits (Xbox 360 only) and sends midi notes to a specified midi output (including velocity). It can be used to transform your plastic drumkit into a midi drumkit!
+This program reads input from Guitar Hero drumkits (Xbox 360 only) and sends MIDI notes to a specified MIDI output (including velocity). It can be used to transform your plastic drumkit into a MIDI drumkit!
 
 This was inspired by PS360 Midi Drummer (link unavailable), but it didn't work for me at all - so, I ended up deciding to do my own program.
 
@@ -9,38 +9,38 @@ It is **NOT** compatible with PS3 or Wii kits, since this program uses XInput - 
 
 ## Requirements
 This program needs a few things to work correctly. Those are:
-  * .NET Framework
-  * MidiYoke
+  * [.NET Framework 4.5.2](https://www.microsoft.com/en-us/download/details.aspx?id=42642) or above
+  * [loopMIDI](http://www.tobias-erichsen.de/software/loopmidi.html)
   * Any DAW (Digital Audio Workstation)
-    * FL Studio, Ableton and similar software are examples of DAWs.
-  * ASIO4ALL
+    * FL Studio, Ableton, Mixcraft and similar software are examples of DAWs.
+  * [ASIO4ALL](www.asio4all.com/)
 
 The last one isn't obligatory, but it is strongly recommended if you want to use your drumkit without audio lag.
 
 ## Usage
-This assumes you already have the requirements installed.
+This assumes you already have the requirements installed, and have created a loopback MIDI port on loopMIDI called "loopMIDI Port" (default name).
   * Open up 360GHDrums2Midi.exe;
-  * It'll list the available Midi output devices - memorize one of the MidiYoke ones (we'll be using "device 1 - Out to MidiYoke 1");
+  * It'll list the available Midi output devices - memorize the id of the port you've created on loopMIDI (we'll be using "device 1 - loopMIDI Port", "1" being its id);
   * Close down the program;
   * Open up the settings.ini file that comes with the package;
   * Find the "outDevice = 0" line and change its value to the number of the device - in our case, 1 (so it should look like "outDevice = 1");
     * There are other settings that can be customized in this file - they'll be explained thoroughly in the next section.
   * Save the file;
   * Turn on and plugin your drumkit, then open 360GHDrums2Midi.exe again;
-  * It'll already be reading your drumkit data and sending it to Out to MidiYoke 1 - to test it, just hit some pads at random, and its color and velocity should be shown on the screen;
+  * It'll already be reading your drumkit data and sending it to loopMIDI Port - to test it, just hit some pads at random, and its color and velocity should be shown on the screen;
     * If it isn't, check if your drumkit isn't controller 1 among Xbox controllers - if it isn't, open up settings.ini again, and change the "index = 1" line to the actual player index of your controller (2, 3 or 4), then save it and close.
   * Open your prefered DAW software;
-  * Find the "Midi input" setting on it, and choose In from MidiYoke 1 (if you're using Out to MidiYoke 1);
+  * Find the "Midi input" setting on it, and choose loopMIDI Port (if you're using loopMIDI Port);
   * In the DAW, open your favorite drums instrument/VSTi;
-  * Hit the pads on your drumkit! It should be working! However, with a bit of audio latency, which can be quite bothersome;
+  * Hit the pads on your drumkit, and it should be working! However, with a bit of audio latency, which can be quite bothersome;
   * To fix that, find the "audio output" setting on your DAW, and set it to ASIO4ALL;
-    * Note that, while ASIO4ALL fixs the audio latency, it also makes the audio output exclusive to the software that uses it - so the DAW will be the only program on your computer that will actually output any audio. If you want to hear audio from other programs while having the DAW open, do **not** use ASIO4ALL (however, you'll still have audio latency).
+    * Note that, while ASIO4ALL fixs the audio latency, it also makes the audio output exclusive to the software that uses it - so, the DAW will be the only program on your computer that will actually output any audio. If you want to hear audio from other programs while having the DAW open, do **not** use ASIO4ALL (however, you'll still have audio latency).
   * Hit the pads again! It should still be working, but this time without the audio lag!
 
 ## Settings
 The program also offers some custom settings, which can be altered on the settings.ini file. Those are:
 * boostRed
-  * Midi velocity values range from 0 to 127. This setting will add the specified value to the velocity of the midi note, when the red pad is hit (but it will never go over the 127 limit).
+  * Midi velocity values range from 0 to 127. This setting will add the specified value to the velocity of the MIDI note, when the red pad is hit (but it will never go over the 127 limit).
   * Default value is 20.
 * boostYellow
   * Same as boostRed, but for the yellow cymbal.
@@ -52,23 +52,23 @@ The program also offers some custom settings, which can be altered on the settin
   * Same as boostRed, but for the orange cymbal.
 * boostKick
   * Same as boostRed, but for the kick pedal.
-* midiRed
-  * It is the midi note that will be sent when the red pad is hit. Read the [General MIDI Percussion Key Map](http://computermusicresource.com/GM.Percussion.KeyMap.html) to find the specific midi note you want.
+* MIDIRed
+  * It is the MIDI note that will be sent when the red pad is hit. Read the [General MIDI Percussion Key Map](http://computermusicresource.com/GM.Percussion.KeyMap.html) to find the specific MIDI note you want.
   * Default value is 38
-* midiYellow
-  * Same as midiRed, but for the yellow cymbal.
+* MIDIYellow
+  * Same as MIDIRed, but for the yellow cymbal.
   * Default value is 46
-* midiBlue
-  * Same as midiRed, but for the blue pad.
+* MIDIBlue
+  * Same as MIDIRed, but for the blue pad.
   * Default value is 45
-* midiGreen
-  * Same as midiRed, but for the green pad.
+* MIDIGreen
+  * Same as MIDIRed, but for the green pad.
   * Default value is 43
-* midiOrange
-  * Same as midiRed, but for the orange cymbal.
+* MIDIOrange
+  * Same as MIDIRed, but for the orange cymbal.
   * Default value is 49
-* midiKick
-  * Same as midiRed, but for the kick pedal.
+* MIDIKick
+  * Same as MIDIRed, but for the kick pedal.
   * Default value is 36
 * channel
   * Refers to the Midi channel to which the note will be sent to. Minimum value is 1, maximum is 16. Channel 10 is used for drums.

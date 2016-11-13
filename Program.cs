@@ -43,37 +43,37 @@ namespace GHDrums2Midi {
                 if (state.Buttons.LeftShoulder == ButtonState.Released) kick = false;
                 if (state.Buttons.B == ButtonState.Pressed && !red) {
                     red = true; var velocity = EaseOut(Math.Floor(state.ThumbSticks.Left.Y * 120 + 15), degree) + boostRed;
-                    if (velocity > 127) velocity = 127;
+                    if (velocity > 127 || velocity < 0) velocity = 127;
                     Console.WriteLine("red pad hit! velocity: " + velocity);
                     SendNote(midiRed, velocity, midiOut, channel);
                 }
                 if (state.Buttons.Y == ButtonState.Pressed && !yellow) {
                     yellow = true; var velocity = EaseOut(Math.Floor(state.ThumbSticks.Right.X * 30000) + 18, degree) + boostYellow;
-                    if (velocity > 127) velocity = 127;
+                    if (velocity > 127 || velocity < 0) velocity = 127;
                     Console.WriteLine("yellow cymbal hit! velocity: " + velocity);
                     SendNote(midiYellow, velocity, midiOut, channel);
                 }
                 if (state.Buttons.X == ButtonState.Pressed && !blue) {
                     blue = true; var velocity = EaseOut(Math.Floor(state.ThumbSticks.Right.X * 120 + 15), degree) + boostBlue;
-                    if (velocity > 127) velocity = 127;
+                    if (velocity > 127 || velocity < 0) velocity = 127;
                     Console.WriteLine("blue pad hit! velocity: " + velocity);
                     SendNote(midiBlue, velocity, midiOut, channel);
                 }
                 if (state.Buttons.A == ButtonState.Pressed && !green) {
                     green = true; var velocity = EaseOut(Math.Floor(state.ThumbSticks.Left.Y * 30000) + 16, degree) + boostGreen;
-                    if (velocity > 127) velocity = 127;
+                    if (velocity > 127 || velocity < 0) velocity = 127;
                     Console.WriteLine("green pad hit! velocity: " + velocity);
                     SendNote(midiGreen, velocity, midiOut, channel);
                 }
                 if (state.Buttons.RightShoulder == ButtonState.Pressed && !orange) {
                     orange = true; var velocity = EaseOut(Math.Floor(state.ThumbSticks.Right.Y * 30000) + 16, degree) + boostOrange;
-                    if (velocity > 127) velocity = 127;
+                    if (velocity > 127 || velocity < 0) velocity = 127;
                     Console.WriteLine("orange cymbal hit! velocity: " + velocity);
                     SendNote(midiOrange, velocity, midiOut, channel);
                 }
                 if (state.Buttons.LeftShoulder == ButtonState.Pressed && !kick) {
                     kick = true; var velocity = EaseOut(Math.Floor(state.ThumbSticks.Right.Y * 120 + 15), degree) + boostKick;
-                    if (velocity > 127) velocity = 127;
+                    if (velocity > 127 || velocity < 0) velocity = 127;
                     Console.WriteLine("kick pedal hit! velocity: " + velocity);
                     SendNote(midiKick, velocity, midiOut, channel);
                 }
